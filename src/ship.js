@@ -2,6 +2,7 @@ export const shipFactory = (name, length) => {
 
     let hitNumber = 0;
     let sunk = false;
+    let boardLocation;
 
     function hit(){
         hitNumber++;
@@ -15,5 +16,5 @@ export const shipFactory = (name, length) => {
         };
     };
 
-    return {name, length, hitNumber, sunk, hit, isSunk};
+    return {name, length, boardLocation};
 };
