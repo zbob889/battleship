@@ -8,50 +8,51 @@ function createShipAtLocation(name, length, location){
 
 module.exports.createShipAtLocation = createShipAtLocation;
 
-const gameBoard = (() => {
+export const gameBoard = (() => {
     // shipFactory('playerCarrier', 5);
     // shipFactory('playerBattleship', 4);
     // shipFactory('playerDestroyer', 3);
     // shipFactory('playerSubmarine', 3);
     // shipFactory('playerPatrolBoat', 2);
 
-    // shipFactory('computerCarrier', 5);
-    // shipFactory('computerBattleship', 4);
-    // shipFactory('computerDestroyer', 3);
-    // shipFactory('compputerSubmarine', 3);
-    // shipFactory('computerPatrolBoat', 2);
-
-    // Gameboards should be able to place ships at specific coordinates by calling the ship factory function.
+    const ships = [];
+    const misses = [];
+    const hits = [];
 
     const place = (name, letterStart, letterEnd, numberStart, numberEnd) => {
         if (letterStart == letterEnd){
-            // do number stuff
             const length = numberEnd - numberStart + 1;
             const position = [];
             for(let i = numberStart - 1; i < numberEnd; i++){
                 position.push(letterStart + `${i + 1}`);
-            }
+            };
+            ships.push(createShipAtLocation(name, length, position));
             return createShipAtLocation(name, length, position);
         } else if (numberStart == numberEnd){
-            // do letter stuff
             let firstNumber = letterStart.charCodeAt(0) - 97;
             let lastNumber = letterEnd.charCodeAt(0) - 97;
-
             let length = lastNumber + 1 - firstNumber;
-        
             const position = [];
-        
             for(let i = firstNumber; i < lastNumber + 1; i++){
                 let newLetter = String.fromCharCode(i + 97);
                 position.push(`${newLetter}` + numberStart);
             };
-
+            ships.push(createShipAtLocation(name, length, position));
             return createShipAtLocation(name, length, position);
+        };
+    };
+
+    const receiveAttack = (location) => {
+        if(ships.includes(`${location}`) == false){
+            misses.push(`${location}`);
+            return misses;
+        } else if(ships.includes(`${location}`) == true){
+            hits.push(`${location}`);
+            return hits;
         }
     };
 
-
-    return {place};
+    return {place, receiveAttack};
 
 })();
 

@@ -29,3 +29,13 @@ test('places a given ship along x axis', () => {
     };
     expect(functions.gameBoard.place('playerDestroyer', 'a', 'c', 1, 1)).toEqual(testShip);
 });
+
+test('checks for a given coordinate to attack and misses', () => {
+    const missesTest = ['a1'];
+    expect(functions.gameBoard.receiveAttack('a1')).toEqual(missesTest);
+});
+
+// test('checks for a given coordinate to attack and hits', () => {
+//     const hitsTest = ['a1'];
+//     expect(functions.gameBoard.receiveAttack('a1')).toEqual(hitsTest);
+// });
