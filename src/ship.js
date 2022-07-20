@@ -1,7 +1,7 @@
-const shipFactory = (length) => {
+export const shipFactory = (name, length) => {
 
-    let hitNumber;
-    let sunk;
+    let hitNumber = 0;
+    let sunk = false;
 
     function hit(){
         hitNumber++;
@@ -15,5 +15,5 @@ const shipFactory = (length) => {
         };
     };
 
-    return {length, hitNumber, sunk, hit, isSunk};
+    return {name, length, hitNumber, sunk, hit, isSunk};
 };

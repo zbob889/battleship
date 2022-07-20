@@ -4,7 +4,7 @@
   "description": "Battleship game",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/zbob889/battleship#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.18.9",
     "css-loader": "^6.7.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.73.0",
