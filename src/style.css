@@ -70,6 +70,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Wargate';
     font-size: 25px;
     background-color: #0189a2;
 }
@@ -77,4 +78,16 @@
 .computerCell:hover{
     transform: scale(1.03);
     border: 1px solid red;
+}
+
+.cellHit{
+    outline: none;
+    border: 1px solid black;
+    background-color: red;
+}
+
+.cellMiss{
+    outline: none;
+    border: 1px solid black;
+    background-color: teal;
 }
