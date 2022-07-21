@@ -5,6 +5,15 @@ import { players } from './players.js';
 
 createBoard();
 
+let computerBoard = document.getElementById('computerBoard');
+
+computerBoard.addEventListener('click', (e) => {
+    if(e.target.className == 'computerCell'){
+        let location = e.target.id;
+        gameBoard.receiveAttack(location);
+    };
+});
+
 gameBoard.place('playerCarrier', 'player', 'a', 'a', 1, 5);
 gameBoard.place('playerBattleship', 'player', 'b', 'e', 1, 1);
 gameBoard.place('playerDestroyer', 'player', 'g', 'i', 6, 6);

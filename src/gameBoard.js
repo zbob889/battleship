@@ -47,13 +47,31 @@ export const gameBoard = (() => {
     };
 
     const receiveAttack = (location) => {
-        if(ships.includes(`${location}`) == false){
-            misses.push(`${location}`);
-            return misses;
-        } else if(ships.includes(`${location}`) == true){
-            hits.push(`${location}`);
-            return hits;
-        }
+        if(location.includes('Player') == true){
+            let ship = players.player.ships.find(object => object.boardLocation.includes(`${location}`));
+            if(ship !== undefined){
+                //attack ship
+                ship.hit();
+                players.computer.hits.push(`${location}`);
+                document.getElementById(`${location}`).className = 'cellHit';
+            } else if(ship == undefined){
+                //miss ship
+                players.computer.misses.push(`${location}`);
+                document.getElementById(`${location}`).className = 'cellMiss';
+            };
+        } else if(location.includes('Computer') == true){
+            let ship = players.computer.ships.find(object => object.boardLocation.includes(`${location}`));
+            if(ship !== undefined){
+                //attack ship
+                ship.hit();
+                players.computer.hits.push(`${location}`);
+                document.getElementById(`${location}`).className = 'cellHit';
+            } else if(ship == undefined){
+                //miss ship
+                players.computer.misses.push(`${location}`);
+                document.getElementById(`${location}`).className = 'cellMiss';
+            };
+        };
     };
 
     return {place, receiveAttack};

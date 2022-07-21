@@ -89,5 +89,5 @@
 .cellMiss{
     outline: none;
     border: 1px solid black;
-    background-color: teal;
+    background-color: gray;
 }
