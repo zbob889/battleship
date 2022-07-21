@@ -16,5 +16,5 @@ export const shipFactory = (name, length) => {
         };
     };
 
-    return {name, length, boardLocation};
+    return {name, length, boardLocation, hit, isSunk};
 };

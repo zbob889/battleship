@@ -1,4 +1,5 @@
 import { shipFactory } from "./ship";
+import { players } from './players.js'
 
 function createShipAtLocation(name, length, location){
     const ship = shipFactory(`${name}`, length);
@@ -6,39 +7,42 @@ function createShipAtLocation(name, length, location){
     return ship;
 };
 
-module.exports.createShipAtLocation = createShipAtLocation;
-
 export const gameBoard = (() => {
-    // shipFactory('playerCarrier', 5);
-    // shipFactory('playerBattleship', 4);
-    // shipFactory('playerDestroyer', 3);
-    // shipFactory('playerSubmarine', 3);
-    // shipFactory('playerPatrolBoat', 2);
 
-    const ships = [];
-    const misses = [];
-    const hits = [];
-
-    const place = (name, letterStart, letterEnd, numberStart, numberEnd) => {
+    const place = (boatName, playerName, letterStart, letterEnd, numberStart, numberEnd) => {
         if (letterStart == letterEnd){
-            const length = numberEnd - numberStart + 1;
+            let length = numberEnd + 1 - numberStart;
             const position = [];
-            for(let i = numberStart - 1; i < numberEnd; i++){
-                position.push(letterStart + `${i + 1}`);
+            if(`${playerName}` == 'player'){
+                for(let i = numberStart - 1; i < numberEnd; i++){
+                    position.push(letterStart + `${i + 1}` + `Player`);
+                };
+                players.player.ships.push(createShipAtLocation(boatName, length, position));
+                return players.player.ships;
+            } else if(`${playerName}` == 'computer'){
+                for(let i = numberStart - 1; i < numberEnd; i++){
+                    position.push(letterStart + `${i + 1}` + `Computer`);
+                };
+                players.computer.ships.push(createShipAtLocation(boatName, length, position));
             };
-            ships.push(createShipAtLocation(name, length, position));
-            return createShipAtLocation(name, length, position);
         } else if (numberStart == numberEnd){
             let firstNumber = letterStart.charCodeAt(0) - 97;
             let lastNumber = letterEnd.charCodeAt(0) - 97;
             let length = lastNumber + 1 - firstNumber;
             const position = [];
-            for(let i = firstNumber; i < lastNumber + 1; i++){
-                let newLetter = String.fromCharCode(i + 97);
-                position.push(`${newLetter}` + numberStart);
+            if(`${playerName}` == 'player'){
+                for(let i = firstNumber; i < lastNumber + 1; i++){
+                    let newLetter = String.fromCharCode(i + 97);
+                    position.push(`${newLetter}` + numberStart + 'Player');
+                };
+                players.player.ships.push(createShipAtLocation(boatName, length, position));
+            } else if(`${playerName}` == 'computer'){
+                for(let i = firstNumber; i < lastNumber + 1; i++){
+                    let newLetter = String.fromCharCode(i + 97);
+                    position.push(`${newLetter}` + numberStart + 'Computer');
+                };
+                players.computer.ships.push(createShipAtLocation(boatName, length, position));
             };
-            ships.push(createShipAtLocation(name, length, position));
-            return createShipAtLocation(name, length, position);
         };
     };
 
@@ -55,5 +59,3 @@ export const gameBoard = (() => {
     return {place, receiveAttack};
 
 })();
-
-module.exports.gameBoard = gameBoard;
