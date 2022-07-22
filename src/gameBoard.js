@@ -52,6 +52,7 @@ export const gameBoard = (() => {
             if(ship !== undefined){
                 //attack ship
                 ship.hit();
+                ship.isSunk();
                 players.computer.hits.push(`${location}`);
                 document.getElementById(`${location}`).className = 'cellHit';
             } else if(ship == undefined){
@@ -64,6 +65,8 @@ export const gameBoard = (() => {
             if(ship !== undefined){
                 //attack ship
                 ship.hit();
+                ship.isSunk();
+                players.computer.checkForLoss();
                 players.computer.hits.push(`${location}`);
                 document.getElementById(`${location}`).className = 'cellHit';
             } else if(ship == undefined){

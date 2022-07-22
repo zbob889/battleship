@@ -5,16 +5,17 @@ export const shipFactory = (name, length) => {
     let boardLocation;
 
     function hit(){
-        hitNumber++;
+        this.hitNumber++;
     };
 
     function isSunk(){
-        if(hitNumber == length){
-            sunk = true;
+        if(this.hitNumber == this.length){
+            this.sunk = true;
+            console.log('Ship sunk');
         } else if(hitNumber != length){
-            sunk = false;
+            this.sunk = false;
         };
     };
 
-    return {name, length, boardLocation, hit, isSunk};
+    return {name, length, boardLocation, sunk, hitNumber, hit, isSunk};
 };

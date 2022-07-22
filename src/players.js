@@ -7,11 +7,22 @@ export const players = (() => {
         const misses = [];
         const hits = [];
 
+        function checkForLoss(){
+            let lossCondition = this.ships.filter(ship => ship.sunk == false);
+            
+            if(lossCondition.length == 0){
+                //loss
+            } else if(lossCondition.length !== 0){
+                //no loss
+            };
+        };
+
         return {
             ships,
             misses,
-            hits
-        }
+            hits,
+            checkForLoss,
+        };
     })();
 
     const computer = (() => {
@@ -19,16 +30,27 @@ export const players = (() => {
         const misses = [];
         const hits = [];
 
+        function checkForLoss(){
+            let lossCondition = this.ships.filter(ship => ship.sunk == false);
+            
+            if(lossCondition.length == 0){
+                //loss
+            } else if(lossCondition.length !== 0){
+                //no loss
+            };
+        };
+
         return {
             ships,
             misses,
-            hits
-        }
+            hits,
+            checkForLoss,
+        };
     })();
 
     return {
         player,
-        computer
+        computer,
     }
 })();
 
