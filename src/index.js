@@ -12,6 +12,13 @@ computerBoard.addEventListener('click', (e) => {
     if(e.target.className == 'computerCell'){
         let location = e.target.id;
         gameBoard.receiveAttack(location);
+
+        let computerLossStatus = players.computer.lost;
+        if(computerLossStatus == false){
+            computerTurn.attackPlayer();
+        } else if(computerLossStatus == true){
+            console.log("The computer has lost");
+        };
     };
 });
 

@@ -24,7 +24,6 @@ export const computerTurn = (() =>{
             attackPlayer();
         } else if(successCondition == undefined){
             // attack
-            console.log(location);
             gameBoard.receiveAttack(location);
         };
 

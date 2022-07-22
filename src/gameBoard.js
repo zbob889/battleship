@@ -53,6 +53,7 @@ export const gameBoard = (() => {
                 //attack ship
                 ship.hit();
                 ship.isSunk();
+                players.player.checkForLoss();
                 players.computer.hits.push(`${location}`);
                 document.getElementById(`${location}`).className = 'cellHit';
             } else if(ship == undefined){
