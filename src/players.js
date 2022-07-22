@@ -14,7 +14,6 @@ export const players = (() => {
             if(lossCondition.length == 0){
                 //loss
                 lost = true;
-                console.log("Player has lost.");
             } else if(lossCondition.length !== 0){
                 //no loss
                 lost = false;
@@ -42,7 +41,6 @@ export const players = (() => {
             if(lossCondition.length == 0){
                 //loss
                 lost = true;
-                console.log("Computer has lost.")
             } else if(lossCondition.length !== 0){
                 //no loss
                 lost = false;
