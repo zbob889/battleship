@@ -73,11 +73,6 @@
     border: 1px solid black;
 }
 
-.placementCell:hover {
-    transform: scale(1.03);
-    border: 1px solid red;
-}
-
 .shipCell {
     outline: none;
     border: none;

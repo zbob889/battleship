@@ -12,7 +12,7 @@ export const players = (() => {
             let lossCondition = this.ships.filter(ship => ship.sunk == false);
             
             if(lossCondition.length == 0){
-                //loss
+                
                 lost = true;
             } else if(lossCondition.length !== 0){
                 //no loss

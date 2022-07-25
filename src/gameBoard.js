@@ -1,13 +1,25 @@
 import { shipFactory } from "./ship";
 import { players } from './players.js'
 
-function createShipAtLocation(name, length, location){
-    const ship = shipFactory(`${name}`, length);
-    ship.boardLocation = location;
-    return ship;
-};
+// function createShipAtLocation(name, length, location){
+//     const ship = shipFactory(`${name}`, length);
+//     ship.boardLocation = location;
+//     return ship;
+// };
 
 export const gameBoard = (() => {
+
+    const createShipAtLocation = (name, length, location) => {
+        const ship = shipFactory(`${name}`, length);
+        ship.boardLocation = location;
+        return ship;
+    };
+
+    const createPlayerShip = (name, length, location) => {
+        const ship = shipFactory(`${name}`, length);
+        ship.boardLocation = location;
+        players.player.ships.push(ship);
+    };
 
     const place = (boatName, playerName, letterStart, letterEnd, numberStart, numberEnd) => {
         if (letterStart == letterEnd){
@@ -78,6 +90,6 @@ export const gameBoard = (() => {
         };
     };
 
-    return {place, receiveAttack};
+    return {createShipAtLocation, createPlayerShip, place, receiveAttack};
 
 })();
