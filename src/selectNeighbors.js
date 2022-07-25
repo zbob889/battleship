@@ -6,19 +6,25 @@ export default function selectNeighbors(length, direction){
         if(e.target.className == 'placementCell'){
             let cellId = e.target.id;
             let letter = cellId.charAt(0);
-            let number = Number(cellId.charAt(1));
+            let number = Number(cellId.slice(1));
             boatLocation.push(cellId);
-            e.target.className = 'shipCell';
+
+            //f = 102 in ascii -97=5
+            //g = 103 in ascii -97=6
+
+            if((Number(letter.charCodeAt(0) - 97)) > length){
+                letter = String.fromCharCode(length + 97);
+            };
 
             if(direction == 'vertical'){
-                for(let i = 1; i < length; i++){
+                for(let i = 0; i < length; i++){
                     let newNumber = number + i;
                     let newCoordinate = `${letter + newNumber}`;
                     document.getElementById(`${newCoordinate}`).className = 'shipCell';
                     boatLocation.push(newCoordinate);
                 };
             } else if(direction == 'horizontal'){
-                for(let i = 1; i < length; i++){
+                for(let i = 0; i < length; i++){
                     let newLetter = String.fromCharCode(letter.charCodeAt(0) + i);
                     let newCoordinate = `${newLetter + number}`;
                     document.getElementById(`${newCoordinate}`).className = 'shipCell';
@@ -32,16 +38,18 @@ export default function selectNeighbors(length, direction){
         if(e.target.className == 'shipCell'){
             let cellId = e.target.id;
             let letter = cellId.charAt(0);
-            let number = Number(cellId.charAt(1));
-            e.target.className = 'placementCell';
+            let number = Number(cellId.slice(1));
+            if((Number(letter.charCodeAt(0) - 97)) > length){
+                letter = String.fromCharCode(length + 97);
+            };
             if(direction == 'vertical'){
-                for(let i = 1; i < length; i++){
+                for(let i = 0; i < length; i++){
                     let newNumber = number + i;
                     let newCoordinate = `${letter + newNumber}`;
                     document.getElementById(`${newCoordinate}`).className = 'placementCell';
                 };
             } else if(direction == 'horizontal'){
-                for(let i = 1; i < length; i++){
+                for(let i = 0; i < length; i++){
                     let newLetter = String.fromCharCode(letter.charCodeAt(0) + i);
                     let newCoordinate = `${newLetter + number}`;
                     document.getElementById(`${newCoordinate}`).className = 'placementCell';
