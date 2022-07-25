@@ -10,18 +10,18 @@ export default function playerSetup(){
 
     createPlacementBoard();
 
-    let direction = 'horizontal';
+    // let direction = 'horizontal';
 
-    rotateButton.addEventListener('click', () => {
-        if(direction == 'horizontal'){
-            direction = 'vertical';
-        } else if(direction == 'vertical'){
-            direction = 'horizontal';
-        };
-    });
+    // rotateButton.addEventListener('click', () => {
+    //     if(direction == 'horizontal'){
+    //         direction = 'vertical';
+    //     } else if(direction == 'vertical'){
+    //         direction = 'horizontal';
+    //     };
+    // });
 
     document.querySelector('#placementBoard').addEventListener('mouseover', (e) => {
         let carrier = [];
-        selectNeighbors(5, direction);
+        selectNeighbors(5);
     });
 };
