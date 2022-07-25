@@ -10,7 +10,6 @@ import playerShipCreation from "./playerShipCreation";
 
 export default function playerSetup(){
     const popupBox = document.getElementById('popup');
-
     popupBox.style.display = 'flex';
 
     createPlacementBoard();
