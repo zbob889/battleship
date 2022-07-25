@@ -1,6 +1,9 @@
 import { shipFactory } from "./ship";
+import addText from "./addText";
 
 export const players = (() => {
+
+    const gameOver = document.getElementById('gameOver');
 
     const player = (() => {
         const ships = [];
@@ -12,7 +15,8 @@ export const players = (() => {
             let lossCondition = this.ships.filter(ship => ship.sunk == false);
             
             if(lossCondition.length == 0){
-                
+                gameOver.style.display = 'flex';
+                addText('gameOverText', "Player has lost the game!")
                 lost = true;
             } else if(lossCondition.length !== 0){
                 //no loss
@@ -40,6 +44,8 @@ export const players = (() => {
             
             if(lossCondition.length == 0){
                 //loss
+                gameOver.style.display = 'flex';
+                addText('gameOverText', "Player has won the game!")
                 lost = true;
             } else if(lossCondition.length !== 0){
                 //no loss

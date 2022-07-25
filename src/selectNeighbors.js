@@ -39,7 +39,9 @@ export const selectNeighbors = (length) => {
                 for(let i = 0; i < length; i++){
                     let newNumber = number + i;
                     let newCoordinate = `${letter + newNumber}`;
-                    document.getElementById(`${newCoordinate}`).className = 'shipCell';
+                    if(document.getElementById(`${newCoordinate}`).className !== 'takenCell'){
+                        document.getElementById(`${newCoordinate}`).className = 'shipCell';
+                    };
                 };
             } else if(direction == 'horizontal'){
                 if((Number(letter.charCodeAt(0) - 96)) >= 7 && length == 5){
@@ -57,7 +59,9 @@ export const selectNeighbors = (length) => {
                 for(let i = 0; i < length; i++){
                     let newLetter = String.fromCharCode(letter.charCodeAt(0) + i);
                     let newCoordinate = `${newLetter + number}`;
-                    document.getElementById(`${newCoordinate}`).className = 'shipCell';
+                    if(document.getElementById(`${newCoordinate}`).className !== 'takenCell'){
+                        document.getElementById(`${newCoordinate}`).className = 'shipCell';
+                    };
                 };
             };
         };
@@ -83,7 +87,9 @@ export const selectNeighbors = (length) => {
                 for(let i = 0; i < length; i++){
                     let newNumber = number + i;
                     let newCoordinate = `${letter + newNumber}`;
-                    document.getElementById(`${newCoordinate}`).className = 'placementCell';
+                    if(document.getElementById(`${newCoordinate}`).className !== 'takenCell'){
+                        document.getElementById(`${newCoordinate}`).className = 'placementCell';
+                    };
                 };
             } else if(direction == 'horizontal'){
                 if((Number(letter.charCodeAt(0) - 96)) >= 7 && length == 5){
@@ -101,7 +107,9 @@ export const selectNeighbors = (length) => {
                 for(let i = 0; i < length; i++){
                     let newLetter = String.fromCharCode(letter.charCodeAt(0) + i);
                     let newCoordinate = `${newLetter + number}`;
-                    document.getElementById(`${newCoordinate}`).className = 'placementCell';
+                    if(document.getElementById(`${newCoordinate}`).className !== 'takenCell'){
+                        document.getElementById(`${newCoordinate}`).className = 'placementCell';
+                    };
                 };
             };
         };
