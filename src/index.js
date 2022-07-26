@@ -13,11 +13,16 @@ computerBoard.addEventListener('click', (e) => {
     if(e.target.className == 'computerCell'){
         let location = e.target.id;
         gameBoard.receiveAttack(location);
-
-        let computerLossStatus = players.computer.lost;
-        if(computerLossStatus == false){
-            computerTurn.attackPlayer();
-        };
+    };
+    // let computerLossStatus = players.computer.lost;
+    // if(computerLossStatus == false){
+    //     computerTurn.attackPlayer();
+    // };
+});
+computerBoard.addEventListener('mouseup', () => {
+    let computerLossStatus = players.computer.lost;
+    if(computerLossStatus == false){
+        computerTurn.attackPlayer();
     };
 });
 

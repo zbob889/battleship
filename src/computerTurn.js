@@ -1,11 +1,12 @@
 import { gameBoard } from "./gameBoard";
 import { players } from "./players";
+import { converter } from "./convertLettersAndNumbers";
+import checkForHits from './checkForHits';
 
 export const computerTurn = (() =>{
 
-    let misses = players.player.misses;
-    let hits = players.player.hits;
-    let playedLocations = misses.concat(hits);
+    let misses = players.computer.misses;
+    let hits = players.computer.hits;
 
     let location;
 
@@ -16,15 +17,30 @@ export const computerTurn = (() =>{
     };
 
     function attackPlayer(){
-        createLocation();
-        let successCondition = playedLocations.find(e => e == location);
-
-        if(successCondition !== undefined){
-            // try again
-            attackPlayer();
-        } else if(successCondition == undefined){
-            // attack
-            gameBoard.receiveAttack(location);
+        let target = checkForHits();
+        if(target == undefined){
+            let playedLocations = misses.concat(hits);
+            //random attack
+            createLocation();
+            let successCondition = playedLocations.find(e => e == location);
+            if(successCondition !== undefined){
+                // try again
+                attackPlayer();
+            } else if(successCondition == undefined){
+                // attack
+                gameBoard.receiveAttack(location);
+            };
+        }else if(target != undefined){
+            let playedLocations = misses.concat(hits);
+            //target attack
+            let successCondition = playedLocations.find(e => e == target);
+            if(successCondition !== undefined){
+                // try again
+                attackPlayer();
+            } else if(successCondition == undefined){
+                // attack
+                gameBoard.receiveAttack(target);
+            };
         };
 
     };
@@ -33,3 +49,5 @@ export const computerTurn = (() =>{
         attackPlayer,
     };
 })();
+
+// module.exports.computerTurn = computerTurn;

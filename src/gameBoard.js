@@ -68,6 +68,7 @@ export const gameBoard = (() => {
                 players.player.checkForLoss();
                 players.computer.hits.push(`${location}`);
                 document.getElementById(`${location}`).className = 'cellHit';
+                ship.sunkCells();
             } else if(ship == undefined){
                 //miss ship
                 players.computer.misses.push(`${location}`);
@@ -80,12 +81,12 @@ export const gameBoard = (() => {
                 ship.hit();
                 ship.isSunk();
                 players.computer.checkForLoss();
-                ship.sunkCells();
-                players.computer.hits.push(`${location}`);
+                players.player.hits.push(`${location}`);
                 document.getElementById(`${location}`).className = 'cellHit';
+                ship.sunkCells();
             } else if(ship == undefined){
                 //miss ship
-                players.computer.misses.push(`${location}`);
+                players.player.misses.push(`${location}`);
                 document.getElementById(`${location}`).className = 'cellMiss';
             };
         };

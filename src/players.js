@@ -40,7 +40,6 @@ export const players = (() => {
 
         function checkForLoss(){
             let lossCondition = this.ships.filter(ship => ship.sunk == true);
-            console.log(lossCondition);
             if(lossCondition.length == 5){
                 //loss
                 gameOver.style.display = 'flex';
