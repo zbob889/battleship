@@ -107,6 +107,12 @@
     background-color: var(--ship-color);
 }
 
+.playerShipCell {
+    outline: none;
+    border: 1px solid black;
+    background-color: var(--ship-color);
+}
+
 #title {
     font-family: 'Wargate';
     font-size: 90px;

@@ -40,6 +40,7 @@ export default function playerShipCreation(){
             gameBoard.createPlayerShip('playerPatrolBoat', 2, boardLocation);
             const popupBox = document.getElementById('popup');
             popupBox.style.display = 'none';
+            displayShips();
         };
         locations.forEach(e => {
             e.className = 'takenCell';
@@ -62,5 +63,18 @@ export default function playerShipCreation(){
             addText('popupText', 'PLACE YOUR PATROL BOAT');
             selectNeighbors(2);
         };
+    };
+    function displayShips(){
+        let ships = players.player.ships;
+        let shipLocations = [];
+        ships.forEach(e => {
+            for(let i = 0; i < e.boardLocation.length; i++){
+                shipLocations.push(e.boardLocation[i]);
+            };
+        });
+        shipLocations.forEach(e => {
+            let cell = document.getElementById(`${e}`);
+            cell.className = 'playerShipCell';
+        });
     };
 };
