@@ -80,6 +80,7 @@ export const gameBoard = (() => {
                 ship.hit();
                 ship.isSunk();
                 players.computer.checkForLoss();
+                ship.sunkCells();
                 players.computer.hits.push(`${location}`);
                 document.getElementById(`${location}`).className = 'cellHit';
             } else if(ship == undefined){

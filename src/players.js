@@ -13,7 +13,6 @@ export const players = (() => {
 
         function checkForLoss(){
             let lossCondition = this.ships.filter(ship => ship.sunk == false);
-            
             if(lossCondition.length == 0){
                 gameOver.style.display = 'flex';
                 addText('gameOverText', "Player has lost the game!")
@@ -40,14 +39,14 @@ export const players = (() => {
         let lost = false;
 
         function checkForLoss(){
-            let lossCondition = this.ships.filter(ship => ship.sunk == false);
-            
-            if(lossCondition.length == 0){
+            let lossCondition = this.ships.filter(ship => ship.sunk == true);
+            console.log(lossCondition);
+            if(lossCondition.length == 5){
                 //loss
                 gameOver.style.display = 'flex';
                 addText('gameOverText', "Player has won the game!")
                 lost = true;
-            } else if(lossCondition.length !== 0){
+            } else if(lossCondition.length !== 5){
                 //no loss
                 lost = false;
             };

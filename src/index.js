@@ -23,4 +23,3 @@ computerBoard.addEventListener('click', (e) => {
 
 playerSetup();
 computerSetup();
-console.log(players.computer.ships);
