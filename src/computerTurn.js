@@ -2,6 +2,7 @@ import { gameBoard } from "./gameBoard";
 import { players } from "./players";
 import { converter } from "./convertLettersAndNumbers";
 import checkForHits from './checkForHits';
+import checkForHitsImproved from "./computerAI/checkForHitsImproved";
 
 export const computerTurn = (() =>{
 
@@ -17,37 +18,40 @@ export const computerTurn = (() =>{
     };
 
     function attackPlayer(){
-        let target = checkForHits();
-        if(target == undefined){
-            let playedLocations = misses.concat(hits);
-            //random attack
-            createLocation();
-            let successCondition = playedLocations.find(e => e == location);
-            if(successCondition !== undefined){
-                // try again
-                attackPlayer();
-            } else if(successCondition == undefined){
-                // attack
-                gameBoard.receiveAttack(location);
-            };
-        }else if(target != undefined){
-            let playedLocations = misses.concat(hits);
-            //target attack
-            let successCondition = playedLocations.find(e => e == target);
-            if(successCondition !== undefined){
-                // try again
-                attackPlayer();
-            } else if(successCondition == undefined){
-                // attack
-                gameBoard.receiveAttack(target);
-            };
-        };
-
+        let target = checkForHitsImproved();
+        gameBoard.receiveAttack(target);
     };
+
+    // function attackPlayer(){
+    //     let target = checkForHits();
+    //     if(target == undefined){
+    //         let playedLocations = misses.concat(hits);
+    //         //random attack
+    //         createLocation();
+    //         let successCondition = playedLocations.find(e => e == location);
+    //         if(successCondition !== undefined){
+    //             // try again
+    //             attackPlayer();
+    //         } else if(successCondition == undefined){
+    //             // attack
+    //             gameBoard.receiveAttack(location);
+    //         };
+    //     }else if(target != undefined){
+    //         let playedLocations = misses.concat(hits);
+    //         //target attack
+    //         let successCondition = playedLocations.find(e => e == target);
+    //         if(successCondition !== undefined){
+    //             // try again
+    //             attackPlayer();
+    //         } else if(successCondition == undefined){
+    //             // attack
+    //             gameBoard.receiveAttack(target);
+    //         };
+    //     };
+    // 
+    // };
 
     return {
         attackPlayer,
     };
 })();
-
-// module.exports.computerTurn = computerTurn;

@@ -59,6 +59,7 @@ export const gameBoard = (() => {
     };
 
     const receiveAttack = (location) => {
+
         if(location.includes('Player') == true){
             let ship = players.player.ships.find(object => object.boardLocation.includes(`${location}`));
             if(ship !== undefined){

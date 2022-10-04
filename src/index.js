@@ -6,6 +6,7 @@ import { computerTurn } from './computerTurn';
 import playerSetup from './playerSetup';
 import computerSetup from './computerSetup';
 
+
 createBoard();
 
 let computerBoard = document.getElementById('computerBoard');
@@ -14,14 +15,11 @@ computerBoard.addEventListener('click', (e) => {
         let location = e.target.id;
         gameBoard.receiveAttack(location);
     };
-    // let computerLossStatus = players.computer.lost;
-    // if(computerLossStatus == false){
-    //     computerTurn.attackPlayer();
-    // };
 });
-computerBoard.addEventListener('mouseup', () => {
+computerBoard.addEventListener('mouseup', (e) => {
     let computerLossStatus = players.computer.lost;
-    if(computerLossStatus == false){
+    let lastClick = e.target.className;
+    if(computerLossStatus == false && lastClick == 'computerCell'){
         computerTurn.attackPlayer();
     };
 });
