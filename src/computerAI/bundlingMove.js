@@ -23,13 +23,74 @@ export default function bundlingMove(){
 
     let viableTargets = hits.filter((item) => ! sunkenLocations.includes(item));
 
-    // pick random hit from viableTargets
 
-    let newTarget = viableTargets[randomNumber(viableTargets.length)];
+    let lettersOnly = viableTargets.map(cell => {
+        return cell.charAt(0);
+    });
 
-    // determine bundle direction
+    let numbersOnly = viableTargets.map(cell => {
+        return cell.replace(/\D/g, '');
+    });
 
-    //
+
+    if(containsDuplicate(numbersOnly) == true && containsDuplicate(lettersOnly) == false){
+        //bundle is vertical
+
+        for(let i = 0; i < numbersOnly.length; i++){
+            let letter = lettersOnly[0];
+            let number = numbersOnly[i];
+            if(number != 1){
+                let upNumber = number - 1;
+                let upOne = letter + upNumber + 'Player';
+                cells.push(upOne);
+            };
+            if(number != 10){
+                let downNumber = Number(number) + 1;
+                let downOne = letter + downNumber + 'Player'; 
+                cells.push(downOne);
+            };
+        };
+    }else if(containsDuplicate(lettersOnly) == true && containsDuplicate(numbersOnly) == false){
+        //bundle is horizontal
+
+        for(let i = 0; i < lettersOnly.length; i++){
+            let number = numbersOnly[0];
+            let letter = lettersOnly[i];
+            if(letter != 'a'){
+                let leftOne = converter.numberToLetter((converter.letterToNumber(letter) - 1)) + number + 'Player';
+                cells.push(leftOne);
+            };
+            if(letter != 'j'){
+                let rightOne = converter.numberToLetter((converter.letterToNumber(letter) + 1)) + number + 'Player';
+                cells.push(rightOne);
+            };
+        };
+    }else if(containsDuplicate(numbersOnly) == true && containsDuplicate(lettersOnly) == true){
+        
+        let newTarget = viableTargets[randomNumber(viableTargets.length)];
+
+        let letter = newTarget.charAt(0);
+        let number = newTarget.replace(/\D/g,'');
+
+        if(letter != 'a'){
+            let leftOne = converter.numberToLetter((converter.letterToNumber(letter) - 1)) + number + 'Player';
+            cells.push(leftOne);
+        };
+        if(letter != 'j'){
+            let rightOne = converter.numberToLetter((converter.letterToNumber(letter) + 1)) + number + 'Player';
+            cells.push(rightOne);
+        };
+        if(number != 1){
+            let upNumber = number - 1;
+            let upOne = letter + upNumber + 'Player';
+            cells.push(upOne);
+        };
+        if(number != 10){
+            let downNumber = Number(number) + 1;
+            let downOne = letter + downNumber + 'Player'; 
+            cells.push(downOne);
+        };
+    };
 
     cells.forEach(cell => {
         if(!(misses.includes(cell) || hits.includes(cell))){
@@ -40,7 +101,9 @@ export default function bundlingMove(){
     let number = randomNumber(possibleLocations.length);
     let target = possibleLocations[number];
 
-    console.log(target);
+    if(target == undefined){
+        bundlingMove();
+    };
 
     gameBoard.receiveAttack(target);
 
